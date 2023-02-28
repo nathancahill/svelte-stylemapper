@@ -25,6 +25,6 @@
 	type $$Props = (typeof Button)['$$Props'];
 </script>
 
-<svelte:element this="button" class={Button.class} {...Button.props}>
+<svelte:element this={Button.component} class={Button.class} {...Button.props}>
 	<slot />
 </svelte:element>

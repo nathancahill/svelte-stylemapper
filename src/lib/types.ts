@@ -8,9 +8,12 @@ export type ComponentProps<T extends SvelteComponentTyped> = T extends SvelteCom
 	? R
 	: unknown;
 
-export type Assign<T1 = Record<string, unknown>, T2 = Record<string, unknown>> = T1 extends any
-	? Omit<T1, keyof T2> & T2
-	: never;
+export type ComponentOrElementProps<T extends SvelteComponentTyped | SvelteHTMLElementsKeys> =
+	T extends SvelteComponentTyped
+		? ComponentProps<T>
+		: T extends SvelteHTMLElementsKeys
+		? SvelteHTMLElements[T]
+		: unknown;
 
 export type StyleConfig =
 	| {
@@ -48,16 +51,16 @@ export type StrictValue<T> = T extends number
 	? number
 	: T;
 
-export interface StyledComponent<TType, TProps> {
-	$$Props: (TType extends SvelteHTMLElementsKeys ? SvelteHTMLElements[TType] : never) & TProps;
-	props: TType extends SvelteHTMLElementsKeys ? SvelteHTMLElements[TType] : never;
+export interface StyledComponent<
+	TType extends SvelteComponentTyped | SvelteHTMLElementsKeys,
+	TProps
+> {
+	$$Props: ComponentOrElementProps<TType> & TProps;
+	props: ComponentOrElementProps<TType>;
 	class: string;
-	component: TType extends SvelteHTMLElementsKeys ? string : never;
-}
-
-export interface StyledComponentComponent<TType extends SvelteComponentTyped, TProps, OwnProps> {
-	$$Props: OwnProps & TProps;
-	props: OwnProps;
-	class: string;
-	component: TType extends SvelteComponentTyped ? Newable<SvelteComponentTyped> : never;
+	component: TType extends SvelteHTMLElementsKeys
+		? TType
+		: TType extends SvelteComponentTyped
+		? Newable<SvelteComponentTyped>
+		: never;
 }

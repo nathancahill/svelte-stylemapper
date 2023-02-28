@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { styled, styledComponent } from '$lib/styled';
+	import { styled } from '$lib/styled';
 	import Simple from './Simple.svelte';
 
-	const Wrapped = styledComponent(Simple, $$restProps, {
+	const Wrapped = styled(Simple, $$restProps, {
 		variants: {
 			intent: {
 				neutral: 'bg-slate-300 border border-slate-500',
@@ -26,6 +26,4 @@
 	type $$Props = (typeof Wrapped)['$$Props'];
 </script>
 
-<svelte:component this={Wrapped.component} class={Wrapped.class} {...Wrapped.props}>
-	<slot />
-</svelte:component>
+<svelte:component this={Wrapped.component} class={Wrapped.class} {...Wrapped.props} />
