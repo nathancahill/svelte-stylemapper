@@ -3,5 +3,5 @@
 	import Wrapped from './Wrapped.svelte';
 </script>
 
-<Button intent="danger" type="button">Name</Button>
+<Button intent="danger" type="button" class="more">Name</Button>
 <Wrapped intent="danger" name="a" />

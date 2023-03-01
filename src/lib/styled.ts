@@ -37,7 +37,7 @@ export function styled<
 											[Name in keyof TConfigs[K]['variants']]?: StrictValue<
 												keyof TConfigs[K]['variants'][Name]
 											>;
-										} & { className: string }
+										} & { class: string }
 								  >
 								: [];
 							forwardProps?: 'variants' extends keyof TConfigs[K]
@@ -72,15 +72,16 @@ export function styled<
 
 	const classes = unique(classNames).join(' ');
 
+	if (props.class && typeof props.class === 'string') {
+		preparedConfig.strippedProps.push('class');
+	}
+
 	const baseProps =
 		preparedConfig.strippedProps.length > 0 ? omit(props, preparedConfig.strippedProps) : props;
 
 	return {
-		// passed in props, without the ones used by styled
 		props: baseProps,
-		// generated class name
 		class: classes,
-		// the component that will be rendered
 		component
 	} as unknown as StyledComponent<TComponent, StyledComponentProps<TConfigs>>;
 }

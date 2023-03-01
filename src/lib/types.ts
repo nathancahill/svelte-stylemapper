@@ -28,7 +28,7 @@ export type StyleConfig =
 			};
 			compoundVariants?: ({
 				[Name in string]: string | number | boolean;
-			} & { className: string })[];
+			} & { class: string })[];
 	  }
 	| string;
 
