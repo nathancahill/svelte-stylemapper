@@ -8,7 +8,7 @@ Usage:
 <script lang="ts">
 	import { styled } from 'svelte-stylemapper';
 
-	const Button = styled('button', $$restProps, {
+	$: Button = styled('button', $$restProps, {
 		variants: {
 			intent: {
 				neutral: 'bg-slate-300 border border-slate-500',

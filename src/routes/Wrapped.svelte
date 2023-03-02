@@ -1,8 +1,13 @@
 <script lang="ts">
+	import type { SvelteComponent } from 'svelte';
 	import { styled } from '$lib/styled';
+	import { useForwardEvents } from './useForwardEvents';
 	import Simple from './Simple.svelte';
 
-	const Wrapped = styled(Simple, $$restProps, {
+	let baseRef: SvelteComponent;
+	useForwardEvents(() => baseRef);
+
+	$: Wrapped = styled(Simple, $$restProps, {
 		variants: {
 			intent: {
 				neutral: 'bg-slate-300 border border-slate-500',
@@ -26,4 +31,9 @@
 	type $$Props = (typeof Wrapped)['$$Props'];
 </script>
 
-<svelte:component this={Wrapped.component} class={Wrapped.class} {...Wrapped.props} />
+<svelte:component
+	this={Wrapped.component}
+	bind:this={baseRef}
+	class={Wrapped.class}
+	{...Wrapped.props}
+/>

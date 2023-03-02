@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { styled } from '$lib/styled';
+	import { useForwardEvents } from './useForwardEvents';
 
-	const Button = styled('button', $$restProps, {
+	let baseRef: Element;
+	useForwardEvents(() => baseRef);
+
+	$: Button = styled('button', $$restProps, {
 		variants: {
 			intent: {
 				neutral: 'bg-slate-300 border border-slate-500',
@@ -25,6 +29,6 @@
 	type $$Props = (typeof Button)['$$Props'];
 </script>
 
-<svelte:element this={Button.component} class={Button.class} {...Button.props}>
+<svelte:element this={Button.component} bind:this={baseRef} class={Button.class} {...Button.props}>
 	<slot />
 </svelte:element>

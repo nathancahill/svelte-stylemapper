@@ -4,4 +4,9 @@
 </script>
 
 <Button intent="danger" type="button" class="more">Name</Button>
-<Wrapped intent="danger" name="a" />
+<Wrapped
+	intent="danger"
+	name="a"
+	on:click={() => console.log('bpp')}
+	on:onkeydown={() => console.log('bpp')}
+/>

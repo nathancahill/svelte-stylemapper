@@ -5,4 +5,4 @@
 	export { className as class };
 </script>
 
-<div class={className}>Hello {name}</div>
+<div class={className} on:click on:keydown>Hello {name}</div>
