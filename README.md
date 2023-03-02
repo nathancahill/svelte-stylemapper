@@ -1,5 +1,7 @@
 # Svelte Stylemapper
 
+Map props to CSS classes, fully typed.
+
 Usage:
 
 > Button.svelte
