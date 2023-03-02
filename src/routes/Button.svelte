@@ -8,8 +8,7 @@
 	$: ({
 		component,
 		class: classes,
-		props,
-		propsType
+		props
 	} = styled('button', $$restProps, {
 		variants: {
 			intent: {
@@ -31,7 +30,7 @@
 		}
 	}));
 
-	type $$Props = typeof propsType;
+	type $$Props = typeof props;
 </script>
 
 <svelte:element this={component} bind:this={baseRef} class={classes} {...props}>
