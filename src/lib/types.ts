@@ -55,7 +55,7 @@ export interface StyledComponent<
 	TType extends SvelteComponentTyped | SvelteHTMLElementsKeys,
 	TProps
 > {
-	$$Props: ComponentOrElementProps<TType> & TProps;
+	propsType: ComponentOrElementProps<TType> & TProps;
 	props: ComponentOrElementProps<TType>;
 	class: string;
 	component: TType extends SvelteHTMLElementsKeys

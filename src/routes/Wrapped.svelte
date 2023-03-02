@@ -7,7 +7,12 @@
 	let baseRef: SvelteComponent;
 	useForwardEvents(() => baseRef);
 
-	$: Wrapped = styled(Simple, $$restProps, {
+	$: ({
+		component,
+		class: classes,
+		props,
+		propsType
+	} = styled(Simple, $$restProps, {
 		variants: {
 			intent: {
 				neutral: 'bg-slate-300 border border-slate-500',
@@ -26,14 +31,9 @@
 			intent: 'neutral',
 			size: 'medium'
 		}
-	});
+	}));
 
-	type $$Props = (typeof Wrapped)['$$Props'];
+	type $$Props = typeof propsType;
 </script>
 
-<svelte:component
-	this={Wrapped.component}
-	bind:this={baseRef}
-	class={Wrapped.class}
-	{...Wrapped.props}
-/>
+<svelte:component this={component} bind:this={baseRef} class={classes} {...props} />

@@ -5,7 +5,12 @@
 	let baseRef: Element;
 	useForwardEvents(() => baseRef);
 
-	$: Button = styled('button', $$restProps, {
+	$: ({
+		component,
+		class: classes,
+		props,
+		propsType
+	} = styled('button', $$restProps, {
 		variants: {
 			intent: {
 				neutral: 'bg-slate-300 border border-slate-500',
@@ -24,11 +29,11 @@
 			intent: 'neutral',
 			size: 'medium'
 		}
-	});
+	}));
 
-	type $$Props = (typeof Button)['$$Props'];
+	type $$Props = typeof propsType;
 </script>
 
-<svelte:element this={Button.component} bind:this={baseRef} class={Button.class} {...Button.props}>
+<svelte:element this={component} bind:this={baseRef} class={classes} {...props}>
 	<slot />
 </svelte:element>

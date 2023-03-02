@@ -80,9 +80,9 @@ export function styled<
 		preparedConfig.strippedProps.length > 0 ? omit(props, preparedConfig.strippedProps) : props;
 
 	return {
+		component,
 		props: baseProps,
-		class: classes,
-		component
+		class: classes
 	} as unknown as StyledComponent<TComponent, StyledComponentProps<TConfigs>>;
 }
 
