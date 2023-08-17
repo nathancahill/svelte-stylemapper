@@ -1,6 +1,6 @@
 {
 	"name": "svelte-stylemapper",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -21,9 +21,6 @@
 	"files": [
 		"dist"
 	],
-	"peerDependencies": {
-		"svelte": "^3.54.0"
-	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
